@@ -1,0 +1,25 @@
+syntax = "proto3";
+package mygrpcmsg;
+
+option go_package = "./mymsg";
+
+service MenuOrder{
+  rpc OrderChickenRice (OrderRequest) returns (OrderResponse) {}
+  rpc OrderBeefStew (OrderRequest) returns (OrderResponse) {}
+  rpc OrderLambSteak (OrderRequest) returns (OrderResponse) {}
+  rpc OrderSalmonSalad (OrderRequest) returns (OrderResponse) {}
+
+}
+
+message OrderRequest{
+  int64 customerID = 1;
+  int64 promoCode = 2;
+  string description = 3;
+  int64 numServing = 4;
+}
+
+message OrderResponse{
+  bool status = 1;
+  int64 waitingTime = 2; //in minutes
+  double totalCost = 3;
+}
